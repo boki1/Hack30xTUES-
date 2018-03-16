@@ -26,7 +26,6 @@ startButton.pack()
 def buy():
     shopWindow = Tk()
     mainMenu.destroy()
-
 shopButton = Button(mainMenu, text = 'SHOP', command = buy)
 shopButton.pack()
 
