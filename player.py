@@ -1,5 +1,9 @@
 from tkinter import *
 import turtle
+import enemies
+import enemy__bullet
+import MainMenu
+import player
 
 #import pdb; pdb.set_trace()
 #the window
