@@ -27,6 +27,6 @@ def close():
 closeButton = Button(mainMenu, text = 'CLOSE THE GAME', command = close)
 closeButton.pack()
 
-
+#dsadasf
 
 mainMenu.mainloop()
