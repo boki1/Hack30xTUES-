@@ -2,7 +2,7 @@ from tkinter import *
 import turtle as t
 import random
 import math
-import time
+from threading import Timer
 
 #import pdb; pdb.set_trace()
 # the window
@@ -41,6 +41,15 @@ for enemy in enemies:
 
 enemyspeed = 5
 
+for enemy in enemies:
+    enemyBullet = t.Turtle()
+    enemyBullet.speed(0)
+    enemyBullet.penup()
+    enemyBullet.shape("circle")
+    enemyBullet.color("white")
+    enemyBullet.shapesize(0.5)
+    enemyBullet.hideturtle()
+
 
 def moveLeft():
     x = player.xcor()
@@ -53,6 +62,7 @@ def moveRight():
     x += playerSpeed
     player.setx(x)
 
+"""
 def fireBullet():
     global bulletstate
     if bulletstate == "ready":
@@ -61,6 +71,7 @@ def fireBullet():
         y = player.ycor()
         bullet.setposition(x, y)
         bullet.showturtle()
+"""
 
 """
 def shooting(self):
@@ -82,44 +93,33 @@ def shooting(self):
     bullet.sety(y)
 
 """
+def fireEnemies():
+    eBulletSpeed = 20
+    x = enemy.xcor()
+    y = enemy.ycor()
+    enemyBullet.setposition(x, y)
+    y -= eBulletSpeed
+    enemy.sety(y)
 
 # On click
 t.listen()
 t.onkey(moveLeft, "Left")
 t.onkey(moveRight, "Right")
-t.onkey(shooting, "space")
-
-def eshooting():
-    for enemy in enemies:
-        enemyBullet = t.Turtle()
-        enemyBullet.speed(0)
-        enemyBullet.penup()
-        enemyBullet.shape("circle")
-        enemyBullet.color("white")
-        enemyBullet.shapesize(0.5)
-
-        eBulletSpeed = 20
-        x = enemy.xcor()
-        y = enemy.ycor()
-        enemyBullet.setposition(x, y)
-
-"""
-move = False
-
-def startMovement():
-   global move
-   move = True
-
-def stopMovement():
-   global move
-   move = False
+t.onkey(fireEnemies, "space")
 
 
-while True:
-   if move and sys.pyautokey.press('left'):
-       player.moveLeft()
-"""
+time = Timer(30.0, fireEnemies)
+time.start()
 
+
+def shooting():
+    while True:
+        global bullet
+        bullet = t.Turtle()
+        x = player.xcor()
+        y = player.ycor()
+        bullet.setposition(x, y)
+        bullet.showturtle()
 
 
 
@@ -131,10 +131,12 @@ def collision(t1, t2):
         return False
 
 def gameOver():
+    global bulletState
     gameover = t.Screen()
     gameover.bgcolor("purple")
     #gameover.bgpic("C:/Users/vili/Documents/exercises/HackTues meetings/Space Invaders/gameover.gif")
     bulletState = "fire"
+
 
 while True:
     # Enemies' movement
@@ -152,23 +154,6 @@ while True:
         while True:
             time.sleep(2)
             enemy.eshooting()
-
-
-
-
-
-    """
-    def shooting():
-        while True:
-            global bullet
-            bullet = t.Turtle()
-            x = player.xcor()
-            y = player.ycor()
-            bullet.setposition(x, y)
-            bullet.showturtle()
-    """
-
-    """
         global bulletState
         if bulletState == "ready":
             bulletState = "fire"
@@ -182,8 +167,7 @@ while True:
     if bullet.ycor() > 350:
         bullet.hideturtle()
         bulletState = "ready"
-        
-    """
+
 
     if collision(enemy, player):
         for enemy in enemies:
