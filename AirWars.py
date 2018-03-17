@@ -1,5 +1,6 @@
 import math
 import random
+from threading import Timer
 import turtle as t
 from tkinter import *
 
@@ -19,19 +20,25 @@ def buy():
 
 
 def runTheProgram():
+
     class Bullets(t.Turtle):
-        def __init__(self, spriteshape, color, startx, starty, bulletstate):
+        def __init__(self, spriteshape, color, startx, starty):
             t.Turtle.__init__(self, shape=spriteshape)
             self.speed(0)
             self.penup()
             self.color(color)
             self.shape(spriteshape)
             self.goto(startx, starty)
-            self.speed = 9
-            self.bulletstate = StringVar()
             self.hideturtle()
 
+        bulletstate = StringVar()
+
+
         def fireBullet(self):
+            print("sayuvdsa")
+            global bulletstate
+            global bulletspeed
+
             if bulletstate == "ready":
                 bulletstate = "fire"
                 x = player.xcor()
@@ -39,6 +46,8 @@ def runTheProgram():
                 self.setposition(x, y)
                 self.showturtle()
 
+
+    bullet = Bullets("triangle", "blue", -1200, -1200)
     mainMenu.destroy()
 
     wn = t.Screen()
@@ -164,7 +173,8 @@ def runTheProgram():
     t.onkey(moveUp, "Up")
     t.onkey(moveRight, "Right")
     t.onkey(moveDown, "Down")
-    t.onkey(fireBullet, "space" )
+    t.onkey(bullet.fireBullet, "space" )
+
 
     while True:
         for enemy in enemies:
