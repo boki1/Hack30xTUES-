@@ -51,5 +51,39 @@ turtle.onkey(moveUp, "Up")
 turtle.onkey(moveDown, "Down")
 turtle.listen()
 
+
+
+root = Tk()
+move = BooleanVar(value=False)
+direction = IntVar()
+
+button = Button(root, text="Left")
+button.pack(side=LEFT)
+button.bind('')
+
+def startMovement():
+    global move
+    move = True
+
+def stopMovement():
+    global move
+    move = False
+
+def changeDirection():
+    global button
+    button =
+
 turtle.done()
+
+
+
+
+
+
+
+
+
+
+
+
 

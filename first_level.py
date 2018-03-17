@@ -69,7 +69,7 @@ def moveDown():
     y = player.ycor()
     y -= playerspeed
     player.sety(y)
-	
+
 def shooting():
     global bulletState
     if bulletState == "ready":
@@ -85,17 +85,17 @@ def collision():
         return True
     else:
         return False
-	
 
 
-	
+
+
 #Binding functions and keys
 turtle.onkey(moveLeft, "Left")
 turtle.onkey(moveRight, "Right")
 turtle.onkey(moveUp, "Up")
 turtle.onkey(moveDown, "Down")
 turtle.listen()
-	
+
 #Main game loop
 #while True:
 def main_loop():
@@ -108,26 +108,6 @@ def main_loop():
 while True:
     time.sleep(2)
     enemy.shooting()
-
-
-
-
-
-
-
-for enemy in enemies:
-    enemy.shape("circle")
-    enemy.color("red")
-    enemy.penup()
-    enemy.speed(0)
-    x = random.randint(700, 800)
-    y = random.randint(-350, 350)
-    enemy.setposition(x, y)
-
-
-
-enemyspeed = 5
-
 
 
 
