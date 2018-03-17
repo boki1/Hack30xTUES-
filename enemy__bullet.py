@@ -9,9 +9,9 @@ enemyBullet.speed(0)
 enemyBullet.shapesize(0.5)
 enemyBullet.hideturtle()
 
-bulletSpeed = 20
+eBulletSpeed = 20
 
-bulletState = "ready"
+eBulletState = "ready"
 
 def shooting():
     global bulletState
