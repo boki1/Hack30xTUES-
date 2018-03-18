@@ -3,10 +3,10 @@ import math
 import random
 
 wn = turtle.Screen()
-#wn.bgcolor("pink")
+wn.bgcolor("light blue")
 wn.bgpic("backgroundupdated.gif")
 wn.title("ГЪЛЪБ БЕЗ 1/2")
-wn.setup(600, 800, 0, 0)
+wn.setup(1000, 820, 0, 0)
 
 turtle.register_shape("planefix.gif")
 turtle.register_shape("Chance Vought  F4U-1D Corsair.gif")
@@ -29,14 +29,13 @@ borderPen.fd(800)
 borderPen.lt(90)
 borderPen.hideturtle()
 
-
 score = 0
 score_pen = turtle.Turtle()
 score_pen.speed(0)
-score_pen.color("white")
+score_pen.color("black")
 score_pen.penup()
-score_pen.setposition(-245, 820)
-scorestring = "Score: %s" % score
+score_pen.setposition(-425, 200)
+scorestring = "Score: %s" %score
 score_pen.write(scorestring, False, align="left", font=("Arial", 16, "normal"))
 score_pen.hideturtle()
 
@@ -147,7 +146,7 @@ while True:
             bulletstate = "ready"
             bullet.setposition(-500, 0)
             enemy.goto(random.randint(-300, 235), random.randint(765, 785))
-            score += 10
+            score += 5
             scorestring = "Score: %s" % score
             score_pen.clear()
             score_pen.write(scorestring, False, align="left", font=("Arial", 16, "normal"))
