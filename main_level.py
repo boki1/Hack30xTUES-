@@ -44,7 +44,7 @@ def runTheProgram():
                 self.setposition(x, y)
                 self.showturtle()
 
-	bullet = Bullets("triangle", "blue", -1200, -1200)
+    bullet = Bullets("triangle", "blue", -1200, -1200)
     mainMenu.destroy()
 		
     wn = t.Screen()
@@ -145,6 +145,7 @@ def fireBullet():
 """
 
     def gameover():
+        global bulletstate
         gameover = t.Screen()
         gameover.bgcolor("purple")
         gameover.title("AIR WARS END")

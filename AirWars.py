@@ -1,6 +1,6 @@
 import math
 import random
-import turtle as t
+import turtle
 from tkinter import *
 
 mainMenu = Tk()
@@ -19,9 +19,9 @@ def buy():
 
 
 def runTheProgram():
-    class Bullets(t.Turtle):
+    class Bullets(turtle.Turtle):
         def __init__(self, spriteshape, color, startx, starty, bulletstate):
-            t.Turtle.__init__(self, shape=spriteshape)
+            turtle.Turtle.__init__(self, shape=spriteshape)
             self.speed(0)
             self.penup()
             self.color(color)
@@ -33,6 +33,7 @@ def runTheProgram():
 
         def fireBullet(self):
             if bulletstate == "ready":
+                global bulletstate
                 bulletstate = "fire"
                 x = player.xcor()
                 y = player.ycor()
@@ -41,12 +42,12 @@ def runTheProgram():
 
     mainMenu.destroy()
 
-    wn = t.Screen()
+    wn = turtle.Screen()
     wn.setup(1100, 700, 0, 0)
     wn.bgcolor("black")
     wn.title("Space Invaders")
 
-    border = t.Turtle()
+    border = turtle.Turtle()
     border.speed(0)
     border.penup()
     border.setposition(-550, -350)
@@ -64,7 +65,7 @@ def runTheProgram():
     border.lt(90)
     border.hideturtle()
 
-    player = t.Turtle()
+    player = turtle.Turtle()
     player.shape("square")
     player.color("purple")
     player.penup()
@@ -78,7 +79,7 @@ def runTheProgram():
     numberOfEnemies = 6
     enemies = []
     for i in range(numberOfEnemies):
-        enemies.append(t.Turtle())
+        enemies.append(turtle.Turtle())
 
     for enemy in enemies:
         enemy.color("green")
@@ -93,7 +94,7 @@ def runTheProgram():
 
     enemyspeed = 9
 
-    bullet = t.Turtle()
+    bullet = turtle.Turtle()
     bullet.shape("triangle")
     bullet.color("pink")
     bullet.penup()
@@ -141,7 +142,7 @@ def runTheProgram():
             y = -330
         player.sety(y)
 
-    """
+
     def fireBullet():
         global bulletstate
         if bulletstate == "ready":
@@ -151,20 +152,20 @@ def runTheProgram():
             bullet.setposition(x, y)
             bullet.showturtle()
     
-    """
+
 
     def gameover():
-        gameover = t.Screen()
+        gameover = turtle.Screen()
         gameover.bgcolor("purple")
         gameover.title("AIR WARS END")
         bulletstate = "fire"
 
-    t.listen()
-    t.onkey(moveLeft, "Left")
-    t.onkey(moveUp, "Up")
-    t.onkey(moveRight, "Right")
-    t.onkey(moveDown, "Down")
-    t.onkey(fireBullet, "space" )
+    turtle.listen()
+    turtle.onkey(moveLeft, "Left")
+    turtle.onkey(moveUp, "Up")
+    turtle.onkey(moveRight, "Right")
+    turtle.onkey(moveDown, "Down")
+    turtle.onkey(fireBullet, "space")
 
     while True:
         for enemy in enemies:
@@ -173,6 +174,7 @@ def runTheProgram():
             enemy.sety(y)
             if enemy.ycor() < -350:
                 gameover()
+
         if isCollision(player, enemy):
             for enemy in enemies:
                 enemy.hideturtle()
@@ -193,25 +195,10 @@ def runTheProgram():
 
 
 
-mainMenu.geometry("1100x700")
-buttonExit=Button(mainMenu, justify = LEFT, command = close)
-photobuttonExit=PhotoImage(file="buttonExit.gif")
-buttonExit.config(image=photobuttonExit,width="600",height="65")
-buttonExit.pack(side=BOTTOM)
-
-buttonShop=Button(mainMenu, justify = LEFT, command = buy)
-photobuttonShop=PhotoImage(file="buttonShop.gif")
-buttonShop.config(image=photobuttonShop,width="600",height="65")
-buttonShop.pack(side=BOTTOM)
-
-buttonStart=Button(mainMenu, justify = LEFT, command = runTheProgram)
-photo=PhotoImage(file="buttonStart.gif")
-buttonStart.config(image=photo,width="600",height="65")
-buttonStart.pack(side=BOTTOM)
 
 
 """
-wn = t.Screen()
+wn = turtle.Screen()
 wn.setup(1100, 700, 0, 0)
 wn.bgcolor("black")
 wn.title("Space Invaders")
