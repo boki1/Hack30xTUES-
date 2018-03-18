@@ -1,6 +1,11 @@
 import math
 import random
+<<<<<<< HEAD
 import turtle
+=======
+from threading import Timer
+import turtle as t
+>>>>>>> ea9994c676f5b29db5eceb4ca5be20590f7a2e2e
 from tkinter import *
 
 mainMenu = Tk()
@@ -19,19 +24,31 @@ def buy():
 
 
 def runTheProgram():
+<<<<<<< HEAD
     class Bullets(turtle.Turtle):
         def __init__(self, spriteshape, color, startx, starty, bulletstate):
             turtle.Turtle.__init__(self, shape=spriteshape)
+=======
+
+    class Bullets(t.Turtle):
+        def __init__(self, spriteshape, color, startx, starty):
+            t.Turtle.__init__(self, shape=spriteshape)
+>>>>>>> ea9994c676f5b29db5eceb4ca5be20590f7a2e2e
             self.speed(0)
             self.penup()
             self.color(color)
             self.shape(spriteshape)
             self.goto(startx, starty)
-            self.speed = 9
-            self.bulletstate = StringVar()
             self.hideturtle()
 
+        bulletstate = StringVar()
+
+
         def fireBullet(self):
+            print("sayuvdsa")
+            global bulletstate
+            global bulletspeed
+
             if bulletstate == "ready":
                 global bulletstate
                 bulletstate = "fire"
@@ -40,6 +57,8 @@ def runTheProgram():
                 self.setposition(x, y)
                 self.showturtle()
 
+
+    bullet = Bullets("triangle", "blue", -1200, -1200)
     mainMenu.destroy()
 
     wn = turtle.Screen()
@@ -160,12 +179,22 @@ def runTheProgram():
         gameover.title("AIR WARS END")
         bulletstate = "fire"
 
+<<<<<<< HEAD
     turtle.listen()
     turtle.onkey(moveLeft, "Left")
     turtle.onkey(moveUp, "Up")
     turtle.onkey(moveRight, "Right")
     turtle.onkey(moveDown, "Down")
     turtle.onkey(fireBullet, "space")
+=======
+    t.listen()
+    t.onkey(moveLeft, "Left")
+    t.onkey(moveUp, "Up")
+    t.onkey(moveRight, "Right")
+    t.onkey(moveDown, "Down")
+    t.onkey(bullet.fireBullet, "space" )
+
+>>>>>>> ea9994c676f5b29db5eceb4ca5be20590f7a2e2e
 
     while True:
         for enemy in enemies:
